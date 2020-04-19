@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="lib/esl.js"></script>
+        <script src="lib/config.js"></script>
+        <script src="lib/jquery.min.js"></script>
+        <script src="lib/facePrint.js"></script>
+    </head>
+    <body>
+        <style>
+            html, body, #main {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+        </style>
+        <div id="main"></div>
+        <script>
+
+            require([
+                'echarts'
+                // 'echarts/chart/map',
+                // 'echarts/chart/scatter',
+                // 'echarts/component/title',
+                // 'echarts/component/legend',
+                // 'echarts/component/geo',
+                // 'echarts/component/visualMap',
+                // 'echarts/component/markPoint',
+                // 'echarts/component/tooltip'
+            ], function (echarts) {
+
+                $.get(['../map/json/hubei.json'], function (data) {
+                    echarts.registerMap('hubei',data);
+                    var chart = echarts.init(document.getElementById('main'));
+
+                    chart.setOption({
+                        tooltip: {},
+                        // legend: {
+                        //     orient: 'vertical',
+                        //     left: 'left',
+                        //     data:['确诊病例']
+                        // },
+                        visualMap: {
+                            min: 200,
+                            max: 5000,
+                            left: 'left',
+                            top: 'bottom',
+                            text: ['High','Low'],
+                            seriesIndex: [1],
+                            inRange: {
+                                color: ['#FFFFFF','#FF0000']
+                            },
+                            calculable : true
+                        },
+                        geo: {
+                            map: 'hubei',
+                            roam: true,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        color: 'rgba(0,0,0,0.4)'
+                                    }
+                                }
+                            },
+                            itemStyle: {
+                                normal:{
+                                    borderColor: 'rgba(0, 0, 0, 0.2)'
+                                },
+                                emphasis:{
+                                    color: null,
+                                    areaColor: null,
+                                    shadowOffsetX: 0,
+                                    shadowOffsetY: 0,
+                                    shadowBlur: 20,
+                                    borderWidth: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        },
+                        series : [
+                           {
+                               type: 'scatter',
+                               coordinateSystem: 'geo',
+                            },
+
+                            {
+                                name: '确诊病例',
+                                type: 'map',
+                                geoIndex: 0,
+                                // tooltip: {show: false},
+                               
+                                data:[
+                                {name:'待明确地区',value:312},
+                                {name:'鄂州',value:1394},
+                                {name:'恩施州',value:252},
+                                {name:'黄冈',value:2907},
+                                {name:'黄石',value:1015},
+                                {name:'监狱系统',value:253},
+                                {name:'荆门',value:928},
+                                {name:'荆州',value:1580},
+                                {name:'潜江',value:198},
+                                {name:'神农架林区',value:11},
+                                {name:'十堰',value:672},
+                                {name:'随州',value:1307},
+                                {name:'天门',value:496},
+                                {name:'未知地区',value:0},
+                                {name:'武汉',value:50333},
+                                {name:'仙桃',value:575},
+                                {name:'咸宁',value:836},
+                                {name:'襄阳',value:1175},
+                                {name:'孝感',value:3518},
+                                {name:'宜昌',value:931}
+
+
+                                ]
+                            }
+                        ]
+                    });
+
+                    // chart.on('click', function (param) {
+                    //     alert('asdf');
+                    // });
+                    //  setTimeout(function () {
+                    //      chart.setOption({
+                    //          series: [{
+                    //              zoom: 5
+                    //          }]
+                    //      });
+                    //  }, 2000);
+                });
+            });
+
+        </script>
+    </body>
+</html>

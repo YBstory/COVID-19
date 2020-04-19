@@ -1,0 +1,325 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="lib/esl.js"></script>
+        <script src="lib/config.js"></script>
+        <script src="lib/jquery.min.js"></script>
+        <script src="lib/facePrint.js"></script>
+    </head>
+    <body>
+        <style>
+            html, body, #main {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+        </style>
+        <div id="main"></div>
+        <script>
+
+            require([
+                'echarts'
+                // 'echarts/chart/map',
+                // 'echarts/chart/scatter',
+                // 'echarts/component/title',
+                // 'echarts/component/legend',
+                // 'echarts/component/geo',
+                // 'echarts/component/visualMap',
+                // 'echarts/component/markPoint',
+                // 'echarts/component/tooltip'
+            ], function (echarts) {
+
+                $.get(['../map/json/world.json'], function (data) {
+                    echarts.registerMap('world',data);
+                    var chart = echarts.init(document.getElementById('main'));
+
+                    chart.setOption({
+                        tooltip: {},
+                        // legend: {
+                        //     orient: 'vertical',
+                        //     left: 'left',
+                        //     data:['确诊病例']
+                        // },
+                        visualMap: {
+                            min: 0,
+                            max: 90000,
+                            left: 'left',
+                            top: 'bottom',
+                            text: ['High','Low'],
+                            seriesIndex: [1],
+                            inRange: {
+                                color: ['#FFEFD5','#A0522D']
+                            },
+                            calculable : true
+                        },
+                        geo: {
+                            map: 'world',
+                            roam: true,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        color: 'rgba(0,0,0,0)'
+                                    }
+                                }
+                            },
+                            itemStyle: {
+                                normal:{
+                                    borderColor: 'rgba(0, 0, 0, 0.2)'
+                                },
+                                emphasis:{
+                                    color: null,
+                                    areaColor: null,
+                                    shadowOffsetX: 0,
+                                    shadowOffsetY: 0,
+                                    shadowBlur: 20,
+                                    borderWidth: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        },
+                        series : [
+                           {
+                               type: 'scatter',
+                               coordinateSystem: 'geo',
+                            },
+
+                            {
+                                name: '确诊病例',
+                                type: 'map',
+                                geoIndex: 0,
+                                // tooltip: {show: false},
+                               
+                                data:[
+                                {name:'Afghanistan',value:794},
+{name:'Albania',value:539},
+{name:'Algeria',value:2268},
+{name:'Andorra',value:696},
+{name:'Angola',value:19},
+{name:'Antigua and Barbuda',value:23},
+{name:'Argentina',value:2669},
+{name:'Armenia',value:1201},
+{name:'Aruba',value:93},
+{name:'Australia',value:6468},
+{name:'Austria',value:14553},
+{name:'Azerbaijan',value:1340},
+{name:'Bahamas',value:49},
+{name:'Bahrain',value:1740},
+{name:'Bailiwick of Jersey',value:217},
+{name:'Bangladesh',value:1231},
+{name:'Barbados',value:73},
+{name:'Belarus',value:4779},
+{name:'Belgium',value:36138},
+{name:'Belize',value:18},
+{name:'Benin',value:35},
+{name:'Bermuda',value:57},
+{name:'Bolivia',value:397},
+{name:'Bosnia and Herzegovina',value:1195},
+{name:'Botswana',value:13},
+{name:'Brazil',value:30961},
+{name:'Brunei',value:136},
+{name:'Bulgaria',value:825},
+{name:'Burkina Faso',value:546},
+{name:'Burma',value:88},
+{name:'Burundi',value:6},
+{name:'Cabo Verde',value:56},
+{name:'Cameroon',value:996},
+{name:'Canada',value:30670},
+{name:'Caribisch Nederland',value:4},
+{name:'Cayman Is',value:54},
+{name:'Central African Republic',value:12},
+{name:'Chad',value:27},
+{name:'Chile',value:8807},
+{name:'China',value:84156},
+{name:'Colombia',value:3105},
+{name:'Congo',value:143},
+{name:'Costa Rica',value:618},
+{name:'Crna Gora',value:294},
+{name:'Croatia',value:1814},
+{name:'Cuba',value:814},
+{name:'Cyprus',value:750},
+{name:'Czech Republic',value:6359},
+{name:'Democratic Republic of the Congo',value:287},
+{name:'Democratic Republic of Timor-Leste',value:6},
+{name:'Denmark',value:6879},
+{name:'Diamond Princess Cruise Ship',value:712},
+{name:'Djibouti',value:732},
+{name:'Dominica',value:16},
+{name:'Dominican Republic',value:3614},
+{name:'Ecuador',value:7858},
+{name:'Egypt',value:2844},
+{name:'El Salvador',value:159},
+{name:'Eritrean',value:35},
+{name:'Estonia',value:1434},
+{name:'Ethiopia',value:96},
+{name:'Faroe',value:184},
+{name:'Fiji',value:16},
+{name:'Finland',value:3369},
+{name:'France',value:108847},
+{name:'French Guiana',value:95},
+{name:'French Polynesia',value:55},
+{name:'Gabon',value:95},
+{name:'Gambia',value:9},
+{name:'Georgia',value:370},
+{name:'Germany',value:133830},
+{name:'Ghana',value:641},
+{name:'Gibraltar',value:129},
+{name:'Grand Princess',value:21},
+{name:'Greece',value:2224},
+{name:'Greenland',value:11},
+{name:'Grenada',value:14},
+{name:'Guadeloupe',value:145},
+{name:'Guam',value:135},
+{name:'Guatemala',value:180},
+{name:'Guernsey',value:223},
+{name:'Guinea',value:404},
+{name:'Guinea-Bissau',value:46},
+{name:'Guyana',value:57},
+{name:'Haiti',value:41},
+{name:'Honduras',value:419},
+{name:'Hungary',value:1763},
+{name:'Iceland',value:1739},
+{name:'India',value:13835},
+{name:'Indonesia',value:5923},
+{name:'Iran',value:79494},
+{name:'Iraq',value:1434},
+{name:'Ireland',value:13271},
+{name:'Isle of Man',value:254},
+{name:'Israel',value:12855},
+{name:'Italy',value:172434},
+{name:'Ivory Coast',value:688},
+{name:'Jamaica',value:105},
+{name:'Japan',value:9788},
+{name:'Jordan',value:402},
+{name:'Kampuchea (Cambodia )',value:122},
+{name:'Kazakhstan',value:1470},
+{name:'Kenya',value:246},
+{name:'Kingdom of Bhutan',value:5},
+{name:'Korea',value:10635},
+{name:'Kuwait',value:1658},
+{name:'Kyrgyzstan',value:489},
+{name:'Laos',value:19},
+{name:'Latvia',value:675},
+{name:'Lebanon',value:668},
+{name:'Liberia',value:76},
+{name:'Libya',value:49},
+{name:'Liechtenstein',value:81},
+{name:'Lithuania',value:1128},
+{name:'Luxembourg',value:3480},
+{name:'Madagascar',value:111},
+{name:'Malawi',value:16},
+{name:'Malaysia',value:5251},
+{name:'Maldives',value:28},
+{name:'Mali',value:190},
+{name:'Malta',value:399},
+{name:'Martinique',value:158},
+{name:'Mauritius',value:324},
+{name:'Mayotte',value:221},
+{name:'Mexico',value:6297},
+{name:'Moldova',value:2264},
+{name:'Monaco',value:93},
+{name:'Mongolia',value:30},
+{name:'Morocco',value:2528},
+{name:'Mozambique',value:31},
+{name:'Namibia',value:16},
+{name:'Nepal',value:30},
+{name:'Netherlands',value:30449},
+{name:'New Zealand',value:1086},
+{name:'Nicaragua',value:9},
+{name:'Niger',value:609},
+{name:'Nigeria',value:442},
+{name:'North Macedonia',value:1117},
+{name:'Northern Ireland',value:1},
+{name:'Northern Mariana Islands',value:13},
+{name:'Norway',value:6848},
+{name:'Oman',value:1069},
+{name:'Pakistan',value:6919},
+{name:'Palestine',value:308},
+{name:'Panama',value:3574},
+{name:'Papua New Cuinea',value:1},
+{name:'Papua New Guinea',value:2},
+{name:'Paraguay',value:174},
+{name:'Peru',value:10303},
+{name:'Philippines',value:5878},
+{name:'Poland',value:7918},
+{name:'Portugal',value:19022},
+{name:'Puerto Rico',value:974},
+{name:'Qatar',value:4663},
+{name:'Republic of Rwanda',value:138},
+{name:'Republic of Serbia',value:5690},
+{name:'Reunion',value:391},
+{name:'Reunion Island',value:6},
+{name:'Romania',value:7707},
+{name:'Russia',value:32008},
+{name:'Saint Barthelemy',value:3},
+{name:'Saint Kitts and Nevis',value:14},
+{name:'Saint Vincent and the Grenadines',value:12},
+{name:'San Marino',value:393},
+{name:'Sao Tome and Principe',value:4},
+{name:'Saudi Arabia',value:7142},
+{name:'Senegal',value:342},
+{name:'Seychelles',value:11},
+{name:'Sierra Leone',value:15},
+{name:'Singapore',value:5050},
+{name:'Sint Maarten',value:53},
+{name:'Slovakia',value:1049},
+{name:'Slovenia',value:1304},
+{name:'Somali',value:80},
+{name:'South Africa',value:2605},
+{name:'South Sudan',value:4},
+{name:'Spain',value:188068},
+{name:'SriLanka',value:242},
+{name:'St.Lucia',value:15},
+{name:'Status Civitatis Vaticanae',value:8},
+{name:'Sudan',value:35},
+{name:'Suriname',value:10},
+{name:'Swaziland',value:17},
+{name:'Sweden',value:13329},
+{name:'Switzerland',value:26810},
+{name:'Syria',value:33},
+{name:'Tanzania',value:147},
+{name:'Thailand',value:2700},
+{name:'The Islamic Republic of Mauritania',value:7},
+{name:'The Republic of Equatorial Guinea',value:79},
+{name:'Togo',value:81},
+{name:'Trinidad and Tobago',value:114},
+{name:'Tunisia',value:822},
+{name:'Turkey',value:78546},
+{name:'Uganda',value:55},
+{name:'Ukraine',value:4662},
+{name:'United Arab Emirates',value:5825},
+{name:'United Kingdom',value:108692},
+{name:'United Kingdom of Great Britain and Ireland',value:20},
+{name:'United States of America',value:672246},
+{name:'Uruguay',value:502},
+{name:'Uzbekistan',value:1380},
+{name:'Venezuela',value:193},
+{name:'Vietnam',value:267},
+{name:'Yemen',value:1},
+{name:'Zambia',value:52},
+{name:'Zimbabwe',value:24}
+
+
+
+                                ]
+                            }
+                        ]
+                    });
+
+                    // chart.on('click', function (param) {
+                    //     alert('asdf');
+                    // });
+                    //  setTimeout(function () {
+                    //      chart.setOption({
+                    //          series: [{
+                    //              zoom: 5
+                    //          }]
+                    //      });
+                    //  }, 2000);
+                });
+            });
+
+        </script>
+    </body>
+</html>

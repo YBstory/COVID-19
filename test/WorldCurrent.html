@@ -1,0 +1,349 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="lib/esl.js"></script>
+        <script src="lib/config.js"></script>
+        <script src="lib/jquery.min.js"></script>
+        <script src="lib/facePrint.js"></script>
+    </head>
+    <body>
+        <style>
+            html, body, #main {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+        </style>
+        <div id="main"></div>
+        <script>
+
+            require([
+                'echarts'
+                // 'echarts/chart/map',
+                // 'echarts/chart/scatter',
+                // 'echarts/component/title',
+                // 'echarts/component/legend',
+                // 'echarts/component/geo',
+                // 'echarts/component/visualMap',
+                // 'echarts/component/markPoint',
+                // 'echarts/component/tooltip'
+            ], function (echarts) {
+
+                $.get(['../map/json/world.json'], function (data) {
+                    echarts.registerMap('world',data);
+                    var chart = echarts.init(document.getElementById('main'));
+
+                    chart.setOption({
+                        tooltip: {},
+                        // legend: {
+                        //     orient: 'vertical',
+                        //     left: 'left',
+                        //     data:['确诊病例']
+                        // },
+
+                        // visualMap: {
+                        //     min: 1,
+                        //     max: 10000,
+                        //     calculable:true, 
+                        //     left: 'left',
+                        //     top: 'bottom',
+                        //     text: ['High','Low'],
+                        //     seriesIndex: [1],
+                        //     pieces:[{
+                        //         min:0,
+                        //         max:1,
+                        //         color:'#FFFFFF'
+                        //     }],
+                        //     inRange: {
+                        //         color: ['#FFEFD5','#A0522D'],
+                        //     },
+
+                        //     hoverLink:true,
+                        //     calculable : true
+                        // },
+
+                        visualMap:{
+                            show:true,
+                            pieces: [{lte: 0, color: '#FFFFFF'},
+                            {gte: 1, lte: 10, color: '#FFFFCC'},
+                            {gte: 11, lte: 100, color: '#FFCC66'},
+                            {gte: 101, lte: 500, color: '#FF9933'},
+                            {gte: 501, lte: 5000, color: '#FF6600'},
+                            {gte: 5001, lte: 30000, color: '#CC0000'},
+                            {gte: 30001, color: '#990000'},
+                            ],
+
+                        },
+
+                        geo: {
+                            map: 'world',
+                            roam: true,
+                            label: {
+                                normal: {
+                                    show: true,
+                                    textStyle: {
+                                        color: 'rgba(0,0,0,0)'
+                                    }
+                                }
+                            },
+                            itemStyle: {
+                                normal:{
+                                    borderColor: 'rgba(0, 0, 0, 0.2)'
+                                },
+                                emphasis:{
+                                    color: null,
+                                    areaColor: null,
+                                    shadowOffsetX: 0,
+                                    shadowOffsetY: 0,
+                                    shadowBlur: 20,
+                                    borderWidth: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
+                        },
+                        series : [
+                           {
+                               type: 'scatter',
+                               coordinateSystem: 'geo',
+                            },
+
+                            {
+                                name: '现存病例',
+                                type: 'map',
+                                geoIndex: 0,
+                                // tooltip: {show: false},
+                               
+                                data:[
+                                {name:'Afghanistan',value:725},
+{name:'Albania',value:236},
+{name:'Algeria',value:1137},
+{name:'Andorra',value:470},
+{name:'Angola',value:12},
+{name:'Antigua and Barbuda',value:21},
+{name:'Argentina',value:1916},
+{name:'Armenia',value:780},
+{name:'Aruba',value:92},
+{name:'Australia',value:6286},
+{name:'Austria',value:4418},
+{name:'Azerbaijan',value:797},
+{name:'Bahamas',value:41},
+{name:'Bahrain',value:1008},
+{name:'Bailiwick of Jersey',value:211},
+{name:'Bangladesh',value:1139},
+{name:'Barbados',value:68},
+{name:'Belarus',value:4395},
+{name:'Belgium',value:23014},
+{name:'Belize',value:16},
+{name:'Benin',value:16},
+{name:'Bermuda',value:52},
+{name:'Bolivia',value:369},
+{name:'Bosnia and Herzegovina',value:829},
+{name:'Botswana',value:12},
+{name:'Brazil',value:14979},
+{name:'Brunei',value:36},
+{name:'Bulgaria',value:784},
+{name:'Burkina Faso',value:257},
+{name:'Burma',value:82},
+{name:'Burundi',value:5},
+{name:'Cabo Verde',value:54},
+{name:'Cameroon',value:807},
+{name:'Canada',value:19745},
+{name:'Caribisch Nederland',value:4},
+{name:'Cayman Is',value:52},
+{name:'Central African Republic',value:12},
+{name:'Chad',value:27},
+{name:'Chile',value:5473},
+{name:'China',value:1796},
+{name:'Colombia',value:2889},
+{name:'Congo',value:126},
+{name:'Costa Rica',value:615},
+{name:'Crna Gora',value:235},
+{name:'Croatia',value:1178},
+{name:'Cuba',value:790},
+{name:'Cyprus',value:733},
+{name:'Czech Republic',value:5218},
+{name:'Democratic Republic of the Congo',value:239},
+{name:'Democratic Republic of Timor-Leste',value:6},
+{name:'Denmark',value:3810},
+{name:'Diamond Princess Cruise Ship',value:126},
+{name:'Djibouti',value:654},
+{name:'Dominica',value:16},
+{name:'Dominican Republic',value:3425},
+{name:'Ecuador',value:6969},
+{name:'Egypt',value:1993},
+{name:'El Salvador',value:153},
+{name:'Eritrean',value:35},
+{name:'Estonia',value:1281},
+{name:'Ethiopia',value:78},
+{name:'Faroe',value:184},
+{name:'Fiji',value:16},
+{name:'Finland',value:3284},
+{name:'France',value:58115},
+{name:'French Guiana',value:95},
+{name:'French Polynesia',value:55},
+{name:'Gabon',value:88},
+{name:'Gambia',value:6},
+{name:'Georgia',value:290},
+{name:'Germany',value:48162},
+{name:'Ghana',value:550},
+{name:'Gibraltar',value:128},
+{name:'Grand Princess',value:21},
+{name:'Greece',value:2097},
+{name:'Greenland',value:11},
+{name:'Grenada',value:14},
+{name:'Guadeloupe',value:137},
+{name:'Guam',value:130},
+{name:'Guatemala',value:175},
+{name:'Guernsey',value:216},
+{name:'Guinea',value:362},
+{name:'Guinea-Bissau',value:43},
+{name:'Guyana',value:43},
+{name:'Haiti',value:38},
+{name:'Honduras',value:388},
+{name:'Hungary',value:1400},
+{name:'Iceland',value:587},
+{name:'India',value:11616},
+{name:'Indonesia',value:4796},
+{name:'Iran',value:20472},
+{name:'Iraq',value:498},
+{name:'Ireland',value:12723},
+{name:'Isle of Man',value:252},
+{name:'Israel',value:9740},
+{name:'Italy',value:106962},
+{name:'Ivory Coast',value:489},
+{name:'Jamaica',value:100},
+{name:'Japan',value:9187},
+{name:'Jordan',value:136},
+{name:'Kampuchea (Cambodia )',value:72},
+{name:'Kazakhstan',value:1176},
+{name:'Kenya',value:182},
+{name:'Kingdom of Bhutan',value:5},
+{name:'Korea',value:2576},
+{name:'Kuwait',value:1395},
+{name:'Kyrgyzstan',value:370},
+{name:'Laos',value:19},
+{name:'Latvia',value:613},
+{name:'Lebanon',value:561},
+{name:'Liberia',value:62},
+{name:'Libya',value:37},
+{name:'Liechtenstein',value:80},
+{name:'Lithuania',value:919},
+{name:'Luxembourg',value:3167},
+{name:'Madagascar',value:78},
+{name:'Malawi',value:14},
+{name:'Malaysia',value:2198},
+{name:'Maldives',value:12},
+{name:'Mali',value:143},
+{name:'Malta',value:352},
+{name:'Martinique',value:150},
+{name:'Mauritius',value:234},
+{name:'Mayotte',value:218},
+{name:'Mexico',value:5810},
+{name:'Moldova',value:1974},
+{name:'Monaco',value:89},
+{name:'Mongolia',value:25},
+{name:'Morocco',value:2122},
+{name:'Mozambique',value:29},
+{name:'Namibia',value:13},
+{name:'Nepal',value:29},
+{name:'Netherlands',value:26699},
+{name:'New Zealand',value:261},
+{name:'Nicaragua',value:8},
+{name:'Niger',value:489},
+{name:'Nigeria',value:277},
+{name:'North Macedonia',value:929},
+{name:'Northern Ireland',value:1},
+{name:'Northern Mariana Islands',value:11},
+{name:'Norway',value:6696},
+{name:'Oman',value:887},
+{name:'Pakistan',value:5345},
+{name:'Palestine',value:244},
+{name:'Panama',value:3475},
+{name:'Papua New Cuinea',value:1},
+{name:'Papua New Guinea',value:2},
+{name:'Paraguay',value:136},
+{name:'Peru',value:8275},
+{name:'Philippines',value:5004},
+{name:'Poland',value:6830},
+{name:'Portugal',value:17846},
+{name:'Puerto Rico',value:923},
+{name:'Qatar',value:4192},
+{name:'Republic of Rwanda',value:78},
+{name:'Republic of Serbia',value:5046},
+{name:'Reunion',value:391},
+{name:'Reunion Island',value:6},
+{name:'Romania',value:5963},
+{name:'Russia',value:29145},
+{name:'Saint Barthelemy',value:3},
+{name:'Saint Kitts and Nevis',value:14},
+{name:'Saint Vincent and the Grenadines',value:12},
+{name:'San Marino',value:355},
+{name:'Sao Tome and Principe',value:4},
+{name:'Saudi Arabia',value:6006},
+{name:'Senegal',value:142},
+{name:'Seychelles',value:11},
+{name:'Sierra Leone',value:15},
+{name:'Singapore',value:4357},
+{name:'Sint Maarten',value:44},
+{name:'Slovakia',value:873},
+{name:'Slovenia',value:1064},
+{name:'Somali',value:73},
+{name:'South Africa',value:1654},
+{name:'South Sudan',value:4},
+{name:'Spain',value:93793},
+{name:'SriLanka',value:158},
+{name:'St.Lucia',value:15},
+{name:'Status Civitatis Vaticanae',value:8},
+{name:'Sudan',value:27},
+{name:'Suriname',value:5},
+{name:'Swaziland',value:8},
+{name:'Sweden',value:11870},
+{name:'Switzerland',value:9592},
+{name:'Syria',value:26},
+{name:'Tanzania',value:129},
+{name:'Thailand',value:964},
+{name:'The Islamic Republic of Mauritania',value:4},
+{name:'The Republic of Equatorial Guinea',value:75},
+{name:'Togo',value:43},
+{name:'Trinidad and Tobago',value:106},
+{name:'Tunisia',value:785},
+{name:'Turkey',value:68146},
+{name:'Uganda',value:35},
+{name:'Ukraine',value:4291},
+{name:'United Arab Emirates',value:4695},
+{name:'United Kingdom',value:93772},
+{name:'United Kingdom of Great Britain and Ireland',value:12},
+{name:'United States of America',value:582692},
+{name:'Uruguay',value:207},
+{name:'Uzbekistan',value:1247},
+{name:'Venezuela',value:184},
+{name:'Vietnam',value:98},
+{name:'Yemen',value:1},
+{name:'Zambia',value:20},
+{name:'Zimbabwe',value:19}
+
+
+
+
+                                ]
+                            }
+                        ]
+                    });
+
+                    // chart.on('click', function (param) {
+                    //     alert('asdf');
+                    // });
+                    //  setTimeout(function () {
+                    //      chart.setOption({
+                    //          series: [{
+                    //              zoom: 5
+                    //          }]
+                    //      });
+                    //  }, 2000);
+                });
+            });
+
+        </script>
+    </body>
+</html>
